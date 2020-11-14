@@ -13,19 +13,19 @@
    ```
    npm install -g express-generator
    ```
-2. 正しくインストールされたを確認
+1. 正しくインストールされたを確認
    ```
    express --help
    ```
-3. ejsテンプレートエンジンをダウンロード（ダウンロード先は./projectFolder）
+1. ejsテンプレートエンジンをダウンロード（ダウンロード先は./projectFolder）
    ```
    express --ejs projectFolder
    ```
-4. projectFolderに移動してdependenciesをインストール
+1. projectFolderに移動してdependenciesをインストール
    ```
    npm install
    ```
-5. サービスを起動
+1. サービスを起動
    ```
    npm start
    ```
