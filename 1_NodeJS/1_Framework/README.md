@@ -40,7 +40,8 @@
    ```
 
 1. Viewの設定
-   `./app.js`
+   
+   ./app.js
 
    ```node
    var express = require('express');
@@ -65,7 +66,7 @@
    module.exports = app;                                   // exports オブジェクト
    ```
 
-   `./views/error.ejs`
+   ./views/error.ejs
 
    ```html
    <!DOCTYPE html>
@@ -81,14 +82,15 @@
    ```
 
 1. Routeの設定
-   `./app.js`
+   
+   ./app.js
 
    ```node
    var login = require('./routes/login');          // モジュールを導入
    app.get('/login', login.form);                  // Routeを設定
    ```
 
-   `./routes/login.js`
+   ./routes/login.js
 
    ```node
    exports.form = (req, res) => {                  // exports メソッド
