@@ -66,20 +66,7 @@
       * 関数
       * オブジェクト
 
-## データ変更
-   
-   1. 文字列に変更: toString()
-   1. 文字列 ⇒ 数値: parseInt() parseFloat()
-
-      ```javascript
-      parseInt('32');      // 32 デフォルトの基数は10
-      parseInt('1001', 2); // 9 基数を2に指定
-      parseInt('4.9');     // 4 小数部を切り捨て
-      parseFloat('3.14');  // 3.14
-      isNaN('abc');        // true isNaNで数値かどうかを判定できる
-      ```
-
-## ブロック
+## ブロック処理
 
    1. 条件文
 
@@ -185,28 +172,37 @@
       }
       ```
 
-   1. よく使う定義済み関数
+   1. URIエンコード/ディコード関数 `encodeURI() と decodeURI()`
 
-      * encodeURI() と decodeURI()
-         * エスケープされないもの: A-Z a-z 0-9 ; , / ? : @ & = + $ - _ . ! ~ * ' ( ) #
-         *  "&", "+", "=" などのHTTPリクエストにおいて特別な文字がエンコードされない
+      * エスケープされないもの: A-Z a-z 0-9 ; , / ? : @ & = + $ - _ . ! ~ * ' ( ) #
+      *  "&", "+", "=" などのHTTPリクエストにおいて特別な文字がエンコードされない
 
-         ```javascript
-         const uri = 'https://mozilla.org/?key=イベント';
-         const encoded = encodeURI(uri);
-         console.log(encoded); // "https://mozilla.org/?key=%E3%82%A4%E3%83%99%E3%83%B3%E3%83%88"
+      ```javascript
+      const uri = 'https://mozilla.org/?key=イベント';
+      const encoded = encodeURI(uri);
+      console.log(encoded); // "https://mozilla.org/?key=%E3%82%A4%E3%83%99%E3%83%B3%E3%83%88"
 
-         try {
-            console.log(decodeURI(encoded)); // "https://mozilla.org/?key=イベント"
-         } catch (e) {
-            console.error(e);
-         }
-         ```
+      try {
+         console.log(decodeURI(encoded)); // "https://mozilla.org/?key=イベント"
+      } catch (e) {
+         console.error(e);
+      }
+      ```
+   1. URIエンコード/ディコード関数 `encodeURIComponent() と decodeURIComponent()`
 
-      * encodeURIComponent() と decodeURIComponent()
-         * エスケープされないもの: A-Z a-z 0-9 - _ . ! ~ * ' ( )
-         *  "&", "+", "=" などのHTTPリクエストにおいて特別な文字もエンコードされる
-      
+      * エスケープされないもの: A-Z a-z 0-9 - _ . ! ~ * ' ( )
+      *  "&", "+", "=" などのHTTPリクエストにおいて特別な文字もエンコードされる
+
+   1. 文字列から数値に変更する関数 `parseInt() と parseFloat()`
+
+      ```javascript
+      parseInt('32');      // 32 デフォルトの基数は10
+      parseInt('1001', 2); // 9 基数を2に指定
+      parseInt('4.9');     // 4 小数部を切り捨て
+      parseFloat('3.14');  // 3.14
+      isNaN('abc');        // true isNaNで数値かどうかを判定できる
+      ```
+
 ## 正規表現
 
    1. 記載方法
@@ -226,26 +222,26 @@
 
    1. 特殊文字
 
-      正規表現式        | マッチ内容
-      ------------------| -----------------------
-      .                 | 改行以外の任意の一文字にマッチ
-      \+                | 直前の文字の 1 回以上の繰り返しにマッチ
-      \*                | 直前の文字の 0 回以上の繰り返しにマッチ
-      ?                 | 直前の文字の 0 回か 1 回の出現にマッチ
-      /^Test$/          | 入力の先頭と末尾にマッチ
-      (abc)             | マッチした内容を記憶する
-      \w                | [A-Za-z0-9_]と同等
-      \W                | [^A-Za-z0-9_]と同等
-      \d                | [0-9]と同等
-      \D                | [^0-9]と同等
-      \s                | スペース、タブ、改ページ、改行を含むホワイトスペース文字にマッチ
-      \S                | ホワイトスペース以外の文字にマッチ
-      .*?[a-z]          | 非貪欲(lazy)マッチ、abcの場合は、aのみマッチ
-      .*[a-z]           | 貪欲(greedy)マッチ、abcの場合は、abc全体マッチ
-      (?=.*?[A-Z])      | １つの英大文字がある [参考サイト](https://qiita.com/momotaro98/items/460c6cac14473765ec14)
-      {n}               | 直前の文字がちょうど n 回出現する
-      {n,}              | 直前の式の少なくとも n 回の出現
-      {n,m}             | 直前の文字が少なくとも n 回、多くても m 回出現
+      正規表現式    | マッチ内容
+      -------------| -----------------------
+      .            | 改行以外の任意の一文字にマッチ
+      \+           | 直前の文字の 1 回以上の繰り返しにマッチ
+      \*           | 直前の文字の 0 回以上の繰り返しにマッチ
+      ?            | 直前の文字の 0 回か 1 回の出現にマッチ
+      /^Test$/     | 入力の先頭と末尾にマッチ
+      (abc)        | マッチした内容を記憶する
+      \w           | [A-Za-z0-9_]と同等
+      \W           | [^A-Za-z0-9_]と同等
+      \d           | [0-9]と同等
+      \D           | [^0-9]と同等
+      \s           | スペース、タブ、改ページ、改行を含むホワイトスペース文字にマッチ
+      \S           | ホワイトスペース以外の文字にマッチ
+      .*?[a-z]     | 非貪欲(lazy)マッチ、abcの場合は、aのみマッチ
+      .*[a-z]      | 貪欲(greedy)マッチ、abcの場合は、abc全体マッチ
+      (?=.*?[A-Z]) | １つの英大文字がある [参考サイト](https://qiita.com/momotaro98/items/460c6cac14473765ec14)
+      {n}          | 直前の文字がちょうど n 回出現する
+      {n,}         | 直前の式の少なくとも n 回の出現
+      {n,m}        | 直前の文字が少なくとも n 回、多くても m 回出現
 
    1. サンプル
 
