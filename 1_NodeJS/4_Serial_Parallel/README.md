@@ -3,9 +3,9 @@
 ## シリアル処理
 
 1. callback関数で実現
-* 中間的な関数を作って、ネストが深くならないような実現方法
-* 早期リターンでネストを減らす
-* パラメータを使って情報を渡す
+   * 中間的な関数を作って、ネストが深くならないような実現方法
+   * 早期リターンでネストを減らす
+   * パラメータを使って情報を渡す
 
    ```node
    var http = require("http");
@@ -40,7 +40,7 @@
    ```
 
 1. async.seriesで実現
-* グローバル変数を使って情報を渡す
+   * グローバル変数を使って情報を渡す
 
    ```node
    const async = require('async');
@@ -91,11 +91,89 @@
 ## パラレル処理
 
 1. callback関数で実現
+   * 単独なタスクを定義して配列に追加し、配列をループして並列で実行
+   * 並列処理の最後にチェックメソッドを追加し、すべての処理が終わるかどうかをチェック
 
-```node
-```
+   ```node
+   const fs = require('fs'); 
+   const tasks = []; 
+   const wordCounts = {}; 
+   const filesDir = './text'; 
+   let completedTasks = 0;
+
+   fs.readdir(filesDir, (err, files) => {
+      if (err) throw err;
+      files.forEach(file => {
+         const task = (file => {
+               return () => {
+                  fs.readFile(file, (err, text) => {
+                     if (err) throw err;
+                     countWordsInText(text);
+                     checkIfComplete();
+                  });
+               };
+         })(`${filesDir}/${file}`);
+         tasks.push(task);
+      })
+      tasks.forEach(task => task());
+   });
+
+   function countWordsInText(text) {
+      const words = text.toString().toLowerCase().split(/\W+/).sort(); 
+      words.filter(word => word).forEach(word => addWordCount(word)); 
+   }
+
+   function addWordCount(word) { 
+      wordCounts[word] = (wordCounts[word]) ? wordCounts[word]+1 : 1;
+   }
+
+   function checkIfComplete() { 
+      completedTasks++;
+      if (completedTasks === tasks.length) { 
+         for (let index in wordCounts) {
+               console.log(`${index}: ${wordCounts[index]}`); 
+         } 
+      } 
+   }
+   ```
 
 1. async.parallelで実現
+   * 処理の実行中にエラーが発生しても既に開始している他の処理の実行は続行する、まだ開始していない処理の実行は行われない
 
-```node
-```
+   ```node
+   var async = require('async');
+
+   async.parallel([
+      callback => {
+        callback(null, 'aaa');
+        //or
+        callback(new Error('bbb'), null);
+      }, 
+      callback => {
+        callback(null, 'ccc');
+        //or
+        callback(new Error('ddd'), null);
+      }
+   ], function (err, results) {});
+   ```
+
+1. async.parallelLimitで実現
+   * 処理の実行中にエラーが発生しても既に開始している他の処理の実行は続行する、まだ開始していない処理の実行は行われない
+   * 並列的に実行する処理の最大数を指定できる
+
+   ```node
+   var async = require('async');
+
+   async.parallelLimit([
+      function (callback) {
+        callback(null, 'aaa');
+        //or
+        callback(new Error('bbb'), null);
+      }, 
+      function (callback) {
+        callback(null, 'ccc');
+        //or
+        callback(new Error('ddd'), null);
+      }
+   ], 10, function (err, results) {});
+   ```
