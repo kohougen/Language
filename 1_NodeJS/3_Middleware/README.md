@@ -10,7 +10,7 @@
 
 1. サンプルコード
 
-   ```node
+   ```javascript
    var express = require('express')
    var app = express()
 

@@ -7,7 +7,7 @@
    * 早期リターンでネストを減らす
    * パラメータを使って情報を渡す
 
-   ```node
+   ```javascript
    var http = require("http");
    var fs = require("fs");
    http.createServer(function (req, res) {
@@ -42,7 +42,7 @@
 1. async.seriesで実現
    * グローバル変数を使って情報を渡す
 
-   ```node
+   ```javascript
    const async = require('async');
    var param = 'zero'
    async.series([ 
@@ -94,7 +94,7 @@
    * 単独なタスクを定義して配列に追加し、配列をループして並列で実行
    * 並列処理の最後にチェックメソッドを追加し、すべての処理が終わるかどうかをチェック
 
-   ```node
+   ```javascript
    const fs = require('fs'); 
    const tasks = []; 
    const wordCounts = {}; 
@@ -140,7 +140,7 @@
 1. async.parallelで実現
    * 処理の実行中にエラーが発生しても既に開始している他の処理の実行は続行する、まだ開始していない処理の実行は行われない
 
-   ```node
+   ```javascript
    var async = require('async');
 
    async.parallel([
@@ -161,7 +161,7 @@
    * 処理の実行中にエラーが発生しても既に開始している他の処理の実行は続行する、まだ開始していない処理の実行は行われない
    * 並列的に実行する処理の最大数を指定できる
 
-   ```node
+   ```javascript
    var async = require('async');
 
    async.parallelLimit([

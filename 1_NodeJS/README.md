@@ -4,6 +4,7 @@ Node.js は、Chrome の V8 JavaScript エンジン で動作する JavaScript �
 * [Download](https://nodejs.org/ja/download/)
 * [Guide](https://nodejs.org/ja/docs/guides/)
 * [API Reference](https://nodejs.org/ja/docs/)
+* [Javascript 基本知識](https://developer.mozilla.org/ja/docs/Web/JavaScript/Guide/)
 
 ## 概要
 1. 非同期型のイベント駆動の JavaScript環境
@@ -34,3 +35,4 @@ Node.js は、Chrome の V8 JavaScript エンジン で動作する JavaScript �
 1. [Middleware関数](https://github.com/kohougen/Language/tree/main/1_NodeJS/3_Middleware)
 1. [シリアル/パラレル処理](https://github.com/kohougen/Language/tree/main/1_NodeJS/4_Serial_Parallel)
 1. [テスト](https://github.com/kohougen/Language/tree/main/1_NodeJS/5_Test)
+1. [Javascriptコア知識](https://github.com/kohougen/Language/tree/main/1_NodeJS/6_JSCore)
