@@ -147,7 +147,7 @@
       multiply(5); // 5
       ```
 
-   1. 短縮形の関数
+   1. 短縮形の関数(アロー関数 arrow関数)
 
       ```javascript
       var a = [
@@ -261,6 +261,81 @@
             .join(''));
          ```
 
-## Promiseチェーン
+## Promiseチェーン [参考サイト](https://developer.mozilla.org/ja/docs/Web/JavaScript/Guide/Using_promises)
 
-   1. 
+   1. Promise thenで非同期処理を順番に実行することを実現
+
+      ```javascript
+      // メイン処理
+      function main() {
+         new Promise((resolve, reject) => {
+            // 初期化処理
+            setTimeout(() => resolve(1), 1000);
+
+         }).then((result) => {
+
+            // 子処理A
+            alert(result); // 1
+
+            // 複雑な処理を分割して別々で定義できる
+            return subA(result);
+
+         }).then((param2) => {
+
+            // 子処理B
+            alert(result); // 2
+
+         }).catch((err) => {
+            // エラー処理
+            failureCallback(err);
+         });
+      }
+
+      // 子処理A
+      function subA(result) {
+         return new Promise((resolve, reject) => {
+            setTimeout(() => resolve(result * 2), 1000);
+
+         }).then(() => {
+
+            // 子処理Aの子処理
+            alert(result); // 2
+
+         }).catch((err) => {
+
+            // エラー処理、省略可能
+            failureCallback(err);
+
+            // メイン処理のCatchに渡す
+            throw err;
+         });
+      }
+      ```
+
+   1. async awaitで非同期処理を順番に実行することを実現 ES2017(ES8)の新機能
+
+      ```javascript
+      async function foo() {
+         try {
+            const result = await doSomething();
+            const newResult = await doSomethingElse(result);
+            const finalResult = await doThirdThing(newResult);
+            console.log(`Got the final result: ${finalResult}`);
+         } catch(error) {
+            failureCallback(error);
+         }
+      }
+
+      // 非同期関数は、await を使用するかどうかに関係なく常に Promise を返すべき
+      function doSomething() {
+         return new Promise(r => setTimeout(r, ms));
+      }
+      ```
+   
+   1. Promise.allで複数の処理を並行に開始し、すべてが終了するのを待つことを実現
+
+      ```javascript
+      Promise.all([func1(), func2(), func3()]).then(([result1, result2, result3]) => { 
+         /* result1, result2, result3 が使える */
+      });
+      ```
