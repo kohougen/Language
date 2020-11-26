@@ -36,3 +36,4 @@ Node.js は、Chrome の V8 JavaScript エンジン で動作する JavaScript �
 1. [シリアル/パラレル処理](https://github.com/kohougen/Language/tree/main/1_NodeJS/4_Serial_Parallel)
 1. [テスト](https://github.com/kohougen/Language/tree/main/1_NodeJS/5_Test)
 1. [Javascriptコア知識](https://github.com/kohougen/Language/tree/main/1_NodeJS/6_JSCore)
+1. [Practice](https://github.com/kohougen/Language/tree/main/1_NodeJS/7_Practice)
