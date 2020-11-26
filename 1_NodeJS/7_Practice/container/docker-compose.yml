@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  # Express
+  express:
+    image: node:latest
+    container_name: express_practice
+    stdin_open: true
+    tty: true
+    volumes:
+    - E:\github\Language\1_NodeJS\7_Practice\workspace:/workspace
+    ports:
+    - 8001:8001

@@ -1,4 +1,4 @@
-# バックエンドサーバー(Expressフレームワーク)
+# RESTful APIサーバー(Expressフレームワーク)
 
 ## 環境構築(コンテナ)
 
@@ -14,9 +14,10 @@
       # コンテナに接続
       docker exec -it express_practice bash
 
-      # node npmのバージョンを確認
+      # node npm expressのバージョンを確認
       node -v  
       npm -v
+      express -- version
 
       # expressをインストール
       npm install -g express-generator
@@ -29,7 +30,9 @@
       # サーバーを起動
       PORT=8001 npm start
       ```
-   
+
+   1. [docker-composeのYAMLファイル](https://github.com/kohougen/Language/tree/main/1_NodeJS/7_Practice/container/docker-compose.yml)
+
    1. ブラウザーから http://127.0.0.1:8001/ にアクセスして動作を確認する
 
       ![alt text](https://github.com/kohougen/Language/blob/main/1_NodeJS/Pictures/Express_Welcome.PNG)
