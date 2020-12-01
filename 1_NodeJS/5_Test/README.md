@@ -3,8 +3,9 @@
 ## 単体テスト/Unitテスト
 
    1. テストフレームワーク
-   * [Mocha](https://mochajs.org/)
-   * [Jest](https://jestjs.io/docs/ja/getting-started)
+   * [Mocha](https://mochajs.org/) バックエンド
+   * [Jasmine](https://jasmine.github.io/setup/nodejs.html) フロントエンド（Angular）
+   * [Jest](https://jestjs.io/docs/ja/getting-started) フロントエンド（React）
 
    1. assertion library
    * [Assert](https://nodejs.org/api/assert.html)
