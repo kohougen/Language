@@ -41,7 +41,7 @@
 
       ![alt text](https://github.com/kohougen/Language/blob/main/1_NodeJS/Pictures/Express_Welcome.PNG)
    
-   1. 生成したプロジェクトの構成
+   1. 生成したプロジェクトの構成（一部は手動で追加）
 
       ```
       .
