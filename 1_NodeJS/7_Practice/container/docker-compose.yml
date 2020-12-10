@@ -1,6 +1,26 @@
 version: '3'
 
 services:
+  # MySQL
+  mysql:
+    image: mysql:5.7
+    container_name: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: db01
+      MYSQL_USER: docker
+      MYSQL_PASSWORD: docker
+      TZ: 'Asia/Tokyo'
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    # マウントする設定ファイルのパス(ロカール:コンテナ)
+    volumes:
+    - E:\docker\volumes\mysql_for_nodejs_practice\data:/var/lib/mysql                  # DBデータを保持
+    - E:\docker\volumes\mysql_for_nodejs_practice\my.cnf:/etc/mysql/conf.d/my.cnf
+    - E:\docker\volumes\mysql_for_nodejs_practice\sqlFile:/docker-entrypoint-initdb.d  # DBの初期化SQL文の置き場
+    # ポート(ロカール:コンテナ)
+    ports:
+    - 32776:3306
+
   # Express
   express:
     image: node:latest
@@ -11,3 +31,5 @@ services:
     - E:\github\Language\1_NodeJS\7_Practice\workspace:/workspace
     ports:
     - 8001:8001
+    depends_on:
+    - mysql

@@ -1,0 +1,10 @@
+{
+    "dbConfig": {
+        "username": "docker",
+        "password": "docker",
+        "database": "db01",
+        "host": "mysql",
+        "port": "3306",
+        "dialect": "mysql"
+      }
+}

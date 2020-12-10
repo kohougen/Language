@@ -14,14 +14,18 @@
       # コンテナに接続
       docker exec -it express_practice bash
 
-      # node npm expressのバージョンを確認
+      # node npm のバージョンを確認
       node -v  
       npm -v
-      express -- version
 
       # expressをインストール
       npm install -g express-generator
-      express --ejs workspace
+
+      # express のバージョンを確認
+      express --version
+
+      # expressプロジェクトを生成
+      express --view=ejs workspace
 
       # dependenciesをインストール
       cd workspace
@@ -43,6 +47,9 @@
       .
       ├── bin
       │   └── www            // アプリの起動に関わる情報が記載されている。
+      ├── dto                // Data Transfer Object(Get/Setメソッド)
+      │   ├── base-dto.js
+      │   └── user-dto.js
       ├── node_modules       // アプリに必要なNode.jsのパッケージ置き場(npm installを実行したら自動的に生成される)
       │   ├─（中略）
       ├── public             // 静的ファイル置き場。Webアプリ開発では使うが、API開発では使わない
@@ -63,4 +70,6 @@
    
    1. [app.jsの説明](https://github.com/kohougen/Language/tree/main/1_NodeJS/7_Practice/workspace/app.js)
 
-   
+   1. [sequelizeを利用してDB接続を実現できる](https://github.com/kohougen/Language/tree/main/1_NodeJS/7_Practice/2_Sequelize)
+
+   1. [TypeDIを利用して依存性注入を実現できる](https://github.com/kohougen/Language/tree/main/1_NodeJS/7_Practice/3_TypeDI)

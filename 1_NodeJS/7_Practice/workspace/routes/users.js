@@ -1,9 +1,11 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
+const servicesFactory = require('../services/servicesFactory');
 
 /* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
+router.get('/', async function(req, res, next) {
+  const data = await servicesFactory.UserService.findOne('tru@gmail.com');
+  res.status(200).json(data);
 });
 
 module.exports = router;
