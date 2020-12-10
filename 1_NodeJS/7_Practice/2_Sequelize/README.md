@@ -41,7 +41,7 @@ Sequelize is a promise-based Node.js ORM(Object-relational mapping) for Postgres
 
    1. [Modelを定義](https://sequelize.org/master/manual/model-basics.html)
 
-      * sequelize.defineを利用してModelを定義
+      * sequelize.defineを利用してModelを定義  [user-model.js](https://github.com/kohougen/Language/tree/main/1_NodeJS/7_Practice/workspace/models/user-model.js)
 
       ```javascript
       const user = sequelize.define("user", // model名（デフォルトはtable名として使う）
@@ -83,4 +83,45 @@ Sequelize is a promise-based Node.js ORM(Object-relational mapping) for Postgres
       });
       ```
 
-   1. 
+   1. Modelを整合してExport  [index.js](https://github.com/kohougen/Language/tree/main/1_NodeJS/7_Practice/workspace/models/index.js)
+
+      ```javascript
+      const sequelize = new Sequelize(     // DB接続情報を設定
+         dbConfig.database,
+         dbConfig.username,
+         dbConfig.password,
+         dbConfig
+      );
+
+      const modelNames = [                 // Model一覧を取得
+         require('./user-model.js'),
+      ];
+
+      const models = {};
+
+      modelNames.forEach((modelName) => {  // Model毎にループしてModelのインスタンスを生成する
+         const model = modelName(sequelize, Sequelize);
+         models[model.name] = model;
+      });
+
+      models.sequelize = sequelize;
+      module.exports = models;             // ModelsをExport
+      ```
+
+   1. [Modelを利用して簡単にCRUDを実現できる](https://sequelize.org/master/manual/model-querying-basics.html)
+
+      [user-repository.js](https://github.com/kohougen/Language/tree/main/1_NodeJS/7_Practice/workspace/repositories/user-repository.js)
+
+      ```javascript
+      const models = require('../models');
+
+      const result = await models.user.create(user);
+
+      const result = await models.user.findAll();
+
+      const result = await models.user.findOne({
+        where: {
+          email: email,
+        }
+      });
+      ```

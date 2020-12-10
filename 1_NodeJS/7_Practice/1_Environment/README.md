@@ -46,26 +46,36 @@
       ```
       .
       ├── bin
-      │   └── www            // アプリの起動に関わる情報が記載されている。
-      ├── dto                // Data Transfer Object(Get/Setメソッド)
+      │   └── www                 // アプリの起動に関わる情報が記載されている。
+      ├── config
+      │   └── default.json        // DB接続情報など
+      ├── dto                     // Data Transfer Object(Get/Setメソッド)
       │   ├── base-dto.js
       │   └── user-dto.js
-      ├── node_modules       // アプリに必要なNode.jsのパッケージ置き場(npm installを実行したら自動的に生成される)
+      ├── models                  // テーブル毎にSequelize Modelを定義
+      │   ├── index.js            // すべてのModelを整合してExport
+      │   └── user-model.js       // usersテーブルのModel
+      ├── node_modules            // アプリに必要なNode.jsのパッケージ置き場(npm installを実行したら自動的に生成される)
       │   ├─（中略）
-      ├── public             // 静的ファイル置き場。Webアプリ開発では使うが、API開発では使わない
+      ├── public                  // 静的ファイル置き場。Webアプリ開発では使うが、API開発では使わない
       │   ├── images
       │   ├── javascripts
       │   └── stylesheets
       │       └── style.css
-      ├── routes             // ミドルウェア関数が書かれいているファイル置き場
+      ├── repositories            // CRUDメソッドを提供
+      │   └── user-repository.js
+      ├── routes                  // ルーティング関連のミドルウェア関数
       │   ├── index.js
       │   └── users.js
-      ├── views              // HTMLのテンプレートファイル置き場。Webアプリ開発では使うが、API開発では使わない
+      ├── services                // サービス
+      │   ├── servicesFactory.js  // すべてのサービスを整合してExport
+      │   └── user-service.js     // User関連のサービスを提供
+      ├── views                   // HTMLのテンプレートファイル置き場。Webアプリ開発では使うが、API開発では使わない
       │   ├── error.ejs
       │   └── index.ejs
-      ├── app.js             // アプリのメインファイル
-      ├── package-lock.json  // 詳しいバージョン情報を保持(npm installを実行したら自動的に生成される)
-      └── package.json       // アプリに必要なNode.jsのパッケージ情報等を記載する
+      ├── app.js                  // アプリのメインファイル
+      ├── package-lock.json       // 詳しいバージョン情報を保持(npm installを実行したら自動的に生成される)
+      └── package.json            // アプリに必要なNode.jsのパッケージ情報等を記載する
       ```
    
    1. [app.jsの説明](https://github.com/kohougen/Language/tree/main/1_NodeJS/7_Practice/workspace/app.js)
