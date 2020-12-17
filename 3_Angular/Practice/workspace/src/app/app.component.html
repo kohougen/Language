@@ -1,0 +1,13 @@
+<!-- タイトル部分（共通） -->
+<h1>{{title}}</h1>
+
+<!-- ナビゲーションリンク（共通） -->
+<nav>
+    <a routerLink="/heroes">Heroes</a>
+</nav>
+
+<!-- ルートごとに変更する部分、この<router-outlet>は、ルーティングされたビューをどこに表示するかをルーターに教えます。 -->
+<router-outlet></router-outlet>
+
+<!-- メッセージ表示部分（共通） -->
+<app-messages></app-messages>
